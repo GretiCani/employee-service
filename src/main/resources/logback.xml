@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <property name="EMPLOYEE_LOGS" value="logs/employee-service.log"/>
+    <property name="SYSTEM_LOGS" value="logs/system.log"/>
+
+    <appender name="EMPLOYEE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${EMPLOYEE_LOGS}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>../logs/archived/employee-service.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>1MB</maxFileSize>
+            <totalSizeCap>10MB</totalSizeCap>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SYSTEM-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${SYSTEM_LOGS}}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>../logs/archived/system-logs.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>1MB</maxFileSize>
+            <totalSizeCap>10MB</totalSizeCap>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="WARN">
+        <appender-ref ref="SYSTEM-APPENDER"/>
+    </root>
+    <logger name="com.icub.task.employee" level="INFO" additivity="false">
+        <appender-ref ref="EMPLOYEE-APPENDER"/>
+    </logger>
+</configuration>

@@ -1,0 +1,3 @@
+2020-10-21 17:04:12,799 INFO com.icub.task.employee.EmployeeServiceApplication [main] Starting EmployeeServiceApplication on move with PID 21893 (/home/move/Desktop/keycloak/icubtask/employee-service/target/classes started by move in /home/move/Desktop/keycloak/icubtask/employee-service)
+2020-10-21 17:04:12,801 INFO com.icub.task.employee.EmployeeServiceApplication [main] No active profile set, falling back to default profiles: default
+2020-10-21 17:04:14,553 INFO com.icub.task.employee.EmployeeServiceApplication [main] Started EmployeeServiceApplication in 2.013 seconds (JVM running for 2.571)

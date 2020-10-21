@@ -1,0 +1,26 @@
+icub:
+  kafka:
+    topic:
+      general-information: ${GENERAL_INFORMATION_TOPIC:employee-general-information-topic}
+      qualifation: ${QUALIFICATION_TOPIC:employee-qualification-topic}
+      project: ${PROJECT_TOPIC:employee-project-topic}
+    mapper:
+      general-information-type: generalInformationEvent:com.icub.task.employee.commons.event.GeneralInformationEvent
+      qualifation-type: qualificationEvent:com.icub.task.employee.commons.event.QualificationEvent
+      project-type: projectEvent:com.icub.task.employee.commons.event.ProjectEvent
+
+spring:
+  application:
+    name: employee-app
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb+srv://icub-user:icub-password@dev-cluster.b80ns.mongodb.net/employee?retryWrites=true&w=majority}
+      database: icubTask
+
+  kafka:
+    client-id: ${spring.application.name}
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: ${icub.kafka.mapper.general-information-type},${icub.kafka.mapper.qualifation-type},${icub.kafka.mapper.project-type}
+      bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:9092}
